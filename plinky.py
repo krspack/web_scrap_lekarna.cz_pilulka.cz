@@ -25,7 +25,7 @@ def lekarnacz_weight(input_text):
     weight_numbers.pop(0)
     weight_numbers.pop(0)
     if len(weight_numbers) == 1:
-            if weight_numbers[0] > 10:
+            if weight_numbers[0] > 5:
                 weight_numbers.append(100)
             else:
                 weight_numbers.insert(0, 0)
@@ -177,13 +177,13 @@ def pil_get_weight_range(description):
     w_pattern = re.compile('((?P<od>\d+)[^\d]*(kg)?(-|–|až)\s*)?(?P<do>\d+)[^\d]*kg')
     kgs = re.search(w_pattern, description)
 
-    size_pattern = re.compile("(Velikost...|velikost...|Vel....|vel....|S\d{1})")
+    size_pattern = re.compile("(Velikost|velikost|Vel.|vel.|S)\s*(\d)")
     size_text = re.findall(size_pattern, description)
 
     if kgs == None:
-        if len(size_text) > 0:
+        if len(size_text) > 1:
             size_pattern_2 = re.compile('\d+')
-            size_list = re.findall(size_pattern_2, size_text[0])
+            size_list = re.findall(size_pattern_2, size_text[1])
             size_list = [int(size) for size in size_list]
             size_list = size_list[0]
             size_chart = {0: [0, 3], 1:[3, 5], 2:[4, 8], 3:[6, 10], 4:[9, 14], 5:[12, 17], 6:[15, 100], 7:[17, 100]}
@@ -200,7 +200,7 @@ def pil_get_weight_range(description):
         if len(kgs) == 2:
             weight_list = kgs
         if len(kgs) == 1:
-            if kgs[0] > 10:
+            if kgs[0] > 5:
                 weight_list = [kgs[0], 100]
             else:
                 weight_list = [0, kgs[0]]
