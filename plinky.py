@@ -25,7 +25,7 @@ def lekarnacz_weight(input_text):
     weight_numbers.pop(0)
     weight_numbers.pop(0)
     if len(weight_numbers) == 1:
-            if weight_numbers[0] > 5:
+            if weight_numbers[0] > 7:
                 weight_numbers.append(100)
             else:
                 weight_numbers.insert(0, 0)
@@ -200,7 +200,7 @@ def pil_get_weight_range(description):
         if len(kgs) == 2:
             weight_list = kgs
         if len(kgs) == 1:
-            if kgs[0] > 5:
+            if kgs[0] > 7:
                 weight_list = [kgs[0], 100]
             else:
                 weight_list = [0, kgs[0]]
